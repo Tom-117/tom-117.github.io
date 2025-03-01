@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tanulmányi Rendszer</title>
   <link rel="stylesheet" href="style.css">
-   <script src="tabla.js"></script>
+  <script src="tabla.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -23,13 +24,10 @@
       <li><a href="oojs.html">OOJS</a></li>
     </ul>
   </nav>
-
   <aside>
-    <p>A diákok adatai:</p>
+    <p><b>A diákok adatai: Itt lehet módositani a diákok adatait, illetve újakat felvenni</b></p>
+      
   </aside>
-
-  
-
 
   <div class="content">
     <input type="text" id="search" placeholder="Keresés..." onkeyup="filterTable()">
@@ -42,7 +40,9 @@
           <th onclick="sortTable(0)">Név</th>
           <th onclick="sortTable(1)">Azonosító</th>
           <th onclick="sortTable(2)">Szak</th>
-          <th onclick="sortTable(3)">Átlag</th>
+          <th onclick="sortTable(3)">Tanulmányi Átlag</th>
+          <th onclick="sortTable(4)">Kredit Index</th>
+          <th onclick="sortTable(5)">Összes teljesített kredit</th>
           <th>Művelet</th>
         </tr>
       </thead>
@@ -51,7 +51,8 @@
       </tbody>
     </table>
     <!-- Itt lehetőség lenne új diák felvitelére (Create) és módosításra (Update) -->
-  </div>
+    <canvas id="studentChart" width="400" height="200"></canvas>
+  
 
   <div class="form-container">
     <h3>Diák kezelése</h3>
@@ -63,22 +64,33 @@
       </div>
       <div class="form-group">
         <label for="azonosito">Azonosító:</label>
-        <input type="text" id="azonosito" required>
+        <input type="text" id="azonosito" required maxlength="6">
       </div>
+
+
       <div class="form-group">
         <label for="szak">Szak:</label>
-        <input type="text" id="szak" required>
+        <input type="text" id="szak" required> <!-- Fixed ID from 'azonosito' to 'szak' -->
+        
       </div>
       <div class="form-group">
-        <label for="atlag">Átlag:</label>
+        <label for="atlag">Tanulmányi Átlag:</label>
         <input type="number" id="atlag" step="0.1" min="1" max="5" required>
+      </div>
+      <div class="form-group">
+        <label for="kreditAtlag">Kredit Index:</label>
+        <input type="number" id="kreditAtlag" step="0.1" min="1" max="5" required>
+      </div>
+      <div class="form-group">
+        <label for="osszKredit">Összes Teljesített kredit:</label>
+        <input type="number" id="osszKredit" step="1" min="0" max="500" required>
       </div>
       <button type="submit" id="submitBtn">Hozzáadás</button>
       <button type="button" onclick="resetForm()">Mégse</button>
     </form>
   </div>
 
-
+</div>
   <footer>
     <p style="text-align-last: center;">Rácz Tamás Csaba-Neptun: L2J7OU</p>
   </footer>
