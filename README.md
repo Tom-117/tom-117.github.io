@@ -5,9 +5,9 @@ Webprogramozás előadás beadandó
 
 Todo:
 drag-drop, svg,webstorage doesnt work properly
-minden oldalra kene meg content
+more content
 szepites
-ajax---eloadas utan talan
+ajax
 
 eddig kesz:
 1.feladat nagyabol
