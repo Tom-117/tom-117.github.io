@@ -24,18 +24,61 @@
   </nav>
 
   <aside>
-    <p>Információk a tanulmányi rendszer használatáról.</p>
+    
+    <p>Diákok adatainak módositása és törlése illetve új diákok létrehozása</p>
   </aside>
 
   <div class="content">
-    
-    <h2 style="text-align: center;">Üdvözöljük a Tanulmányi Rendszerben!</h2>
-    <p>Itt diákok adatait kezelhetjük, statisztikákat készíthetünk, API-hívásokkal dolgozhatunk, és objektumorientált JavaScript példákat láthatunk.</p>
+    <div class="crud-container">
+      <!-- Read Section -->
+      <div class="section">
+        <h3>Adatok lekérdezése</h3>
+        <div class="form-group">
+          <input type="text" id="readId" placeholder="ID (opcionális)">
+          <button onclick="readData()">Lekérdezés</button>
+        </div>
+        <div id="readResult"></div>
+        <div id="statistics"></div>
+      </div>
+
+      <!-- Create Section -->
+      <div class="section">
+        <h3>Új adat létrehozása</h3>
+        <div class="form-group">
+          <input type="text" id="createName" maxlength="30" placeholder="Név">
+          <input type="text" id="createHeight" maxlength="30" placeholder="Magasság">
+          <input type="text" id="createWeight" maxlength="30" placeholder="Súly">
+          <button onclick="createData()">Létrehozás</button>
+        </div>
+      </div>
+
+      <!-- Update Section -->
+      <div class="section">
+        <h3>Adat módosítása</h3>
+        <div class="form-group">
+          <input type="text" id="updateId" placeholder="Azonosító">
+          <input type="text" id="updateName" placeholder="Név">
+          <input type="number" id="updateHeight" placeholder="Magasság">
+          <input type="number" id="updateWeight" placeholder="Súly">
+          <button onclick="updateData()">Módosítás</button>
+        </div>
+      </div>
+
+      <!-- Delete Section -->
+      <div class="section">
+        <h3>Adat törlése</h3>
+        <input type="text" id="deleteId" placeholder="Azonosító">
+        <button onclick="deleteData()">Törlés</button>
+      </div>
+
+      <div id="message" class="message"></div>
+    </div>
   </div>
 
   <footer>
     <p style="text-align-last: center;">Rácz Tamás Csaba-Neptun: L2J7OU</p>
   </footer>
 
+  <script src="ajax.js"></script>
 </body>
 </html>

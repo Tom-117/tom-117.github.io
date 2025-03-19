@@ -14,6 +14,22 @@ window.addEventListener('load', () => {
   }
 });
 
+// Web Storage
+function saveNote() {
+    const note = document.getElementById('noteInput').value;
+    const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+    notes.push(note);
+    localStorage.setItem('notes', JSON.stringify(notes));
+    displayNotes();
+    document.getElementById('noteInput').value = '';
+}
+
+function displayNotes() {
+    const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+    const container = document.getElementById('savedNotes');
+    container.innerHTML = notes.map(note => `<p>${note}</p>`).join('');
+}
+
 // Geolocation példa
 function getLocation() {
   if (navigator.geolocation) {
@@ -52,43 +68,69 @@ function getGeolocationError(error) {
   }
 }
 
+let watchId;
+
+function trackLocation() {
+    if (!navigator.geolocation) {
+        document.getElementById('locationDisplay').innerHTML = "Geolocation is not supported";
+        return;
+    }
+
+    const locationMap = document.getElementById('locationMap').getContext('2d');
+    
+    watchId = navigator.geolocation.watchPosition(
+        (position) => {
+            const { latitude, longitude } = position.coords;
+            document.getElementById('locationDisplay').innerHTML = 
+                `Latitude: ${latitude.toFixed(4)}<br>Longitude: ${longitude.toFixed(4)}`;
+            
+            // Draw on map
+            locationMap.clearRect(0, 0, 400, 300);
+            locationMap.fillStyle = '#f0f0f0';
+            locationMap.fillRect(0, 0, 400, 300);
+            locationMap.fillStyle = 'red';
+            locationMap.beginPath();
+            locationMap.arc(200, 150, 5, 0, Math.PI * 2);
+            locationMap.fill();
+        },
+        (error) => {
+            document.getElementById('locationDisplay').innerHTML = `Error: ${error.message}`;
+        }
+    );
+}
+
 // Drag & Drop továbbfejlesztett verzió
-function allowDrop(ev) {
-  ev.preventDefault();
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const draggables = document.querySelectorAll('.draggable');
+    const dropZone = document.getElementById('dropZone');
 
-function dragStart(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-  ev.target.style.opacity = "0.4";
-}
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', (e) => {
+            e.target.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', e.target.getAttribute('data-value'));
+        });
 
-function dragEnd(ev) {
-  ev.target.style.opacity = "1";
-}
+        draggable.addEventListener('dragend', (e) => {
+            e.target.classList.remove('dragging');
+        });
+    });
 
-function dropItem(ev) {
-  ev.preventDefault();
-  const data = ev.dataTransfer.getData("text");
-  const draggedElement = document.getElementById(data);
-  
-  if (ev.target.id === "dropZone") {
-      ev.target.appendChild(draggedElement);
-      ev.target.style.background = "#e0e0e0";
-      draggedElement.style.margin = "10px auto";
-  }
-}
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.style.background = '#e0e0e0';
+    });
 
-function dragEnter(ev) {
-  if (ev.target.id === "dropZone") {
-      ev.target.style.background = "#c0c0c0";
-  }
-}
+    dropZone.addEventListener('dragleave', (e) => {
+        dropZone.style.background = '';
+    });
 
-function dragLeave(ev) {
-  if (ev.target.id === "dropZone") {
-      ev.target.style.background = "white";
-  }
-}
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const data = e.dataTransfer.getData('text/plain');
+        dropZone.innerHTML += `<div class="dragged-item">${data}</div>`;
+        dropZone.style.background = '';
+    });
+});
 
 // Canvas rajzolás
 window.addEventListener("load", () => {
@@ -116,6 +158,46 @@ window.addEventListener("load", () => {
   }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('drawingCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    // Add clear canvas function
+    window.clearCanvas = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    };
+
+    function draw(e) {
+        if (!isDrawing) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = document.getElementById('colorPicker').value;
+        ctx.lineWidth = document.getElementById('brushSize').value;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+        
+        [lastX, lastY] = [x, y];
+    }
+
+    canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        const rect = canvas.getBoundingClientRect();
+        [lastX, lastY] = [e.clientX - rect.left, e.clientY - rect.top];
+    });
+
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseout', () => isDrawing = false);
+});
+
 // SVG dinamikus manipuláció
 function updateSvg() {
   const svg = document.getElementById("dynamicSvg");
@@ -133,6 +215,55 @@ function updateSvg() {
 // SVG animáció indítása
 window.addEventListener("load", () => {
   setInterval(updateSvg, 50);
+});
+
+function animateSvg() {
+    // Graduation cap bounce animation
+    const gradCap = document.getElementById('gradCap');
+    const gradTassel = document.getElementById('gradTassel');
+    const bounceHeight = Math.sin(Date.now() / 1000) * 10;
+    gradCap.style.transform = `translateY(${bounceHeight}px)`;
+    gradTassel.style.transform = `translateY(${bounceHeight}px) rotate(${Math.sin(Date.now() / 500) * 15}deg)`;
+
+    // Book opening/closing animation
+    const book = document.querySelector('.animated-book');
+    const openAmount = Math.abs(Math.sin(Date.now() / 2000));
+    book.style.transform = `translate(300,80) scaleX(${0.8 + openAmount * 0.2})`;
+
+    // Progress circle animation
+    const progressArc = document.getElementById('progressArc');
+    const progressText = document.getElementById('progressText');
+    const progress = (Math.sin(Date.now() / 2000) + 1) * 50; // 0-100%
+    const dashOffset = 251.2 * (1 - progress / 100);
+    progressArc.style.strokeDashoffset = dashOffset;
+    progressText.textContent = `${Math.round(progress)}%`;
+
+    requestAnimationFrame(animateSvg);
+}
+
+// Web Worker
+let worker = new Worker('worker.js');
+worker.onmessage = function(e) {
+    document.getElementById('workerResult').textContent = 
+        `Prímszámok 1000-ig: ${e.data.slice(0, 5).join(', ')}...`;
+};
+
+function startCalculation() {
+    worker.postMessage(1000);
+}
+
+// Server-Sent Events
+const evtSource = new EventSource('events.php');
+evtSource.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+    const div = document.getElementById('serverEvents');
+    div.innerHTML = `Idő: ${data.time}, Érték: ${data.value}`;
+};
+
+// Initialize
+window.addEventListener('load', () => {
+    displayNotes();
+    animateSvg();
 });
 
 function drawLocationOnMap(lat, lon) {

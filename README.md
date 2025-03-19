@@ -3,18 +3,21 @@ Webprogramozás előadás beadandó
 
 
 
-Todo:
-drag-drop, svg,webstorage doesnt work properly
-more content
-szepites
-ajax
+
 
 eddig kesz:
-1.feladat nagyabol
+1.feladat nagyabol(KEPEK,SZOVEG required)
 2.feladat teljesen
-3.nagyabol kesz
+3.igen
 4.kesz
-5.nem
-6.nem
-7.nem
-8-10.nem
+5.igen(test required)
+6.igen
+7.react(nem)
+8-10.feltoltes(nem) 
+
+todo:
+
+curl test
+react
+kepek,szoveg
+feltoltes
