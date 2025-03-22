@@ -3,10 +3,8 @@ Webprogramozás előadás beadandó
 
 
 
-
-
 eddig kesz:
-1.feladat nagyabol(KEPEK,SZOVEG required)
+1.feladat teljesen
 2.feladat teljesen
 3.igen
 4.kesz
@@ -16,8 +14,6 @@ eddig kesz:
 8-10.feltoltes(nem) 
 
 todo:
-
-curl test
-react
-kepek,szoveg
-feltoltes
+-react
+-feltoltes
+-curl test

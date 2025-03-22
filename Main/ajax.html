@@ -9,6 +9,7 @@
 <body>
 
   <header>
+   
     <h1>Web-programozás-1 Előadás Házi feladat</h1>
   </header>
 
@@ -16,25 +17,32 @@
     <ul>
       <li ><a href="index.html">Főoldal</a></li>
       <li><a href="tabla.html">Diákok</a></li>
-      <li><a href="html5.html">HTML5 API-k</a></li>
-      <li><a href="chart.html">Diagramok</a></li>
-      <li ><a href="ajax.html" class="active">AJAX</a></li>
-      <li><a href="oojs.html">OOJS</a></li>
+      <li><a href="html5.html">Beállitások</a></li>
+      <li><a href="chart.html">Statisztikák</a></li>
+      <li ><a href="ajax.html" class="active">Administration</a></li>
+      <li><a href="oojs.html">OKI időpontfoglalás</a></li>
     </ul>
   </nav>
 
-  <aside>
-    
-    <p>Diákok adatainak módositása és törlése illetve új diákok létrehozása</p>
-  </aside>
+  
 
   <div class="content">
+
+
+    <aside>
+      
+      <h2 style="text-align: center;">Adminisztrációs Felület</h2>
+    <p style="text-align: center;">Itt végezheti el a hallgatói adatok létrehozását, módosítását és törlését a központi adatbázisban.</p>
+    </aside>
+
+
+    
     <div class="crud-container">
       <!-- Read Section -->
       <div class="section">
         <h3>Adatok lekérdezése</h3>
         <div class="form-group">
-          <input type="text" id="readId" placeholder="ID (opcionális)">
+          <input type="text" id="readId" placeholder="ID">
           <button onclick="readData()">Lekérdezés</button>
         </div>
         <div id="readResult"></div>
@@ -45,9 +53,9 @@
       <div class="section">
         <h3>Új adat létrehozása</h3>
         <div class="form-group">
-          <input type="text" id="createName" maxlength="30" placeholder="Név">
-          <input type="text" id="createHeight" maxlength="30" placeholder="Magasság">
-          <input type="text" id="createWeight" maxlength="30" placeholder="Súly">
+          <input type="text" id="createName" maxlength="30" placeholder="Név" required>
+          <input type="number" id="createHeight" maxlength="30" placeholder="Magasság (cm)" required max="230">
+          <input type="number" id="createWeight" maxlength="30" placeholder="Súly (kg)"  required max="180">
           <button onclick="createData()">Létrehozás</button>
         </div>
       </div>
@@ -56,10 +64,10 @@
       <div class="section">
         <h3>Adat módosítása</h3>
         <div class="form-group">
-          <input type="text" id="updateId" placeholder="Azonosító">
-          <input type="text" id="updateName" placeholder="Név">
-          <input type="number" id="updateHeight" placeholder="Magasság">
-          <input type="number" id="updateWeight" placeholder="Súly">
+          <input type="text" id="updateId" placeholder="Azonosító" >
+          <input type="text" id="updateName" placeholder="Név" >
+          <input type="number" id="updateHeight" placeholder="Magasság (cm)" max="230" >
+          <input type="number" id="updateWeight" placeholder="Súly (kg)" max="180" >
           <button onclick="updateData()">Módosítás</button>
         </div>
       </div>
@@ -67,7 +75,7 @@
       <!-- Delete Section -->
       <div class="section">
         <h3>Adat törlése</h3>
-        <input type="text" id="deleteId" placeholder="Azonosító">
+        <input type="text" id="deleteId" placeholder="Azonosító" required>
         <button onclick="deleteData()">Törlés</button>
       </div>
 

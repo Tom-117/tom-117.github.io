@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tanulmányi Rendszer</title>
   <link rel="stylesheet" href="style.css">
+  <script src="chart.js"></script>
 </head>
 <body>
 
   <header>
+   
     <h1>Web-programozás-1 Előadás Házi feladat</h1>
   </header>
 
@@ -16,21 +18,78 @@
     <ul>
       <li ><a href="index.html">Főoldal</a></li>
       <li><a href="tabla.html">Diákok</a></li>
-      <li><a href="html5.html">HTML5 API-k</a></li>
-      <li ><a href="chart.html" class="active">Diagramok</a></li>
-      <li><a href="ajax.html">AJAX</a></li>
-      <li><a href="oojs.html">OOJS</a></li>
+      <li><a href="html5.html">Beállitások</a></li>
+      <li ><a href="chart.html" class="active">Statisztikák</a></li>
+      <li><a href="ajax.html">Administration</a></li>
+      <li><a href="oojs.html">OKI időpontfoglalás</a></li>
     </ul>
   </nav>
 
-  <aside>
-    <p>Információk a tanulmányi rendszer használatáról.</p>
-  </aside>
+  
 
   <div class="content">
+
+    <aside>
+      
+      <h2 style="text-align: center;">Tanulmányi Statisztikák</h2>
+    <p style="text-align: center;">Részletes Elemzések és Kimutatások</p>
+    </aside>
+
+
+
+
     
-    <h2 style="text-align: center;">Üdvözöljük a Tanulmányi Rendszerben!</h2>
-    <p>Itt diákok adatait kezelhetjük, statisztikákat készíthetünk, API-hívásokkal dolgozhatunk, és objektumorientált JavaScript példákat láthatunk.</p>
+    <div class="stats-container">
+      <!-- Grade Distribution Chart -->
+      <div class="chart-item">
+        <h3>Jegyek Eloszlása</h3>
+        <svg id="gradeChart" width="300" height="200">
+          <rect x="20" y="150" width="40" height="30" fill="#e74c3c"/>
+          <rect x="70" y="120" width="40" height="60" fill="#f1c40f"/>
+          <rect x="120" y="80" width="40" height="100" fill="#2ecc71"/>
+          <rect x="170" y="100" width="40" height="80" fill="#3498db"/>
+          <rect x="220" y="140" width="40" height="40" fill="#9b59b6"/>
+          
+          <!-- Grade Labels -->
+          <text x="35" y="190" text-anchor="middle">1</text>
+          <text x="90" y="190" text-anchor="middle">2</text>
+          <text x="140" y="190" text-anchor="middle">3</text>
+          <text x="190" y="190" text-anchor="middle">4</text>
+          <text x="235" y="190" text-anchor="middle">5</text>
+        </svg>
+      </div>
+
+      <!-- Attendance Chart -->
+      <div class="chart-item">
+        <h3>Jelenlét Statisztika</h3>
+        <svg id="attendanceChart" width="200" height="200">
+          <circle cx="100" cy="100" r="80" fill="transparent" stroke="#ddd" stroke-width="20"/>
+          <circle cx="100" cy="100" r="80" fill="transparent" stroke="#2ecc71" stroke-width="20"
+                  stroke-dasharray="377 502"/>
+          <text x="100" y="110" text-anchor="middle" font-size="20">75%</text>
+        </svg>
+      </div>
+
+      <!-- Student Progress -->
+      <div class="chart-item">
+        <h3>Félévi Előrehaladás</h3>
+        <svg id="progressChart" width="300" height="100">
+          <rect x="10" y="40" width="280" height="20" fill="#eee" rx="10"/>
+          <rect x="10" y="40" width="196" height="20" fill="#3498db" rx="10"/>
+          <text x="150" y="30" text-anchor="middle">70% Teljesítve</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="drawing-section">
+      <h3>Rajzolási Felület</h3>
+      <div class="canvas-controls">
+        <input type="color" id="colorPicker" value="#3399ee">
+        <input type="range" id="brushSize" min="1" max="20" value="5">
+        <button onclick="clearCanvas()">Törlés</button>
+      </div>
+      <canvas id="drawingCanvas" width="600" height="400"></canvas>
+    </div>
   </div>
 
   <footer>
