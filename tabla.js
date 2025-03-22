@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Minta diák adatok
   let students = [
-      { nev: "Kovács Péter", azonosito: "D10001", szak: "Informatika", atlag: 4.2, kreditAtlag: 4.0, osszKredit: 120 },
-      { nev: "Teszt Elek", azonosito: "D10002", szak: "Biológia", atlag: 4.0, kreditAtlag: 4.0, osszKredit: 300 },
+      { nev: "Kovács Péter", azonosito: "D10001", szak: "Mérnökinformatika", atlag: 4.2, kreditAtlag: 4.0, osszKredit: 120 },
+      { nev: "Teszt Elek", azonosito: "D10002", szak: "Biokémia", atlag: 4.0, kreditAtlag: 4.0, osszKredit: 300 },
       { nev: "Kovács Wilmos", azonosito: "D10003", szak: "Management", atlag: 4.1, kreditAtlag: 2.0, osszKredit: 175 },
       { nev: "Nagy Anna", azonosito: "D10004", szak: "Matematika", atlag: 4.8, kreditAtlag: 4.5, osszKredit: 150 },
       { nev: "Szabó László", azonosito: "D10005", szak: "Fizika", atlag: 3.9, kreditAtlag: 3.8, osszKredit: 90 },
-      { nev: "Tóth Eszter", azonosito: "D10006", szak: "Kémia", atlag: 4.5, kreditAtlag: 4.3, osszKredit: 180 }
+      { nev: "Tóth Eszter", azonosito: "D10006", szak: "Üzemmérnök", atlag: 4.5, kreditAtlag: 4.3, osszKredit: 180 }
     ];
   
     let chart;

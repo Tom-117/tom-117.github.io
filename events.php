@@ -12,3 +12,5 @@ while (true) {
     flush();
     sleep(2);
 }
+?>
+    

@@ -1,156 +1,189 @@
+:root {
+    --primary: #3399ee;
+    --primary-dark: #2277cc;
+    --secondary: #2d3748;
+    --background: #f7f9fc;
+    --success: #38b2ac;
+    --error: #e53e3e;
+    --text: #1a202c;
+    --border: #e2e8f0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    background: var(--background);
+    line-height: 1.5;
+}
+
 ul {
     float: left;
     width: 100%;
     padding: 0; margin: 0;
     list-style-type: none;
-    }
-    li {
+}
+li {
     display: inline;
-    }
-    
-    a {
+}
+
+a {
     float: left;
     padding: 3px 5px;
     margin: 0px 1px;
     text-decoration: none;
     color: white;
-    background-color: #3399ee;
-    }
-    a.active {border-bottom:5px solid lightblue;}
-    a:hover {
+    background-color: var(--primary);
+}
+a.active {border-bottom:5px solid lightblue;}
+a:hover {
     background-color: #cc6600;
-    }
+}
 
+header, footer {
+    background: var(--secondary);
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
 
-    header, footer {
-        background: #333;
-        color: #fff;
-        text-align: center;
-        padding: 15px;
-      }
-      
-      nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        background: #444;
-        display: flex;
-        justify-content: center;
-      }
-      
-      nav ul li {
-        margin: 0;
-        padding: 10px 20px;
-      }
-      
-      nav ul li a {
-        color: white;
-        text-decoration:none;
-      }
-      
-      nav ul li.active, nav ul li:hover {
-        background: #666;
-      }
-      
-      aside {
-        background: #f4f4f4;
-        padding: 10px;
-      }
-      
-      .content {
-        padding: 20px;
-      }
-      
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-      }
-      
-      table, th, td {
-        border: 1px solid #ccc;
-        text-align: left;
-        padding: 8px;
-      }
-      
-      th {
-        cursor: pointer;
-        background: #eee;
-      }
-      
-      input[type="text"] {
-        padding: 5px;
-        width: 200px;
-        margin-bottom: 10px;
-      }
-      .form-container {
-        margin-top: 20px;
-        padding: 20px;
-        background: #f9f9f9;
-        border-radius: 5px;
-    }
-    
-    .form-group {
-        margin-bottom: 15px;
-    }
-    
-    .form-group label {
-        display: inline-block;
-        width: 100px;
-        margin-right: 10px;
-    }
-    
-    .form-group input {
-        padding: 5px;
-        width: 200px;
-    }
-    
-    button {
-        padding: 5px 10px;
-        margin-right: 10px;
-        cursor: pointer;
-    }
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: var(--primary-dark);
+    display: flex;
+    justify-content: center;
+}
 
-    #dragItem {
-      width: 100px;
-      height: 100px;
-      background: #3399ee;
-      color: white;
-      text-align: center;
-      line-height: 100px;
-      margin: 10px;
-      cursor: move;
-      border-radius: 5px;
-      transition: opacity 0.3s;
-  }
-  
-  #dropZone {
-      width: 200px;
-      height: 200px;
-      border: 3px dashed #999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 10px;
-      transition: background-color 0.3s;
-  }
-  
-  canvas, svg {
-      border: 1px solid #ccc;
-      margin: 10px 0;
-      display: block;
-  }
-  
-  #locationCanvas {
-      background: #f0f0f0;
-  }
-  
-  #dynamicSvg {
-      background: white;
-  }
+nav ul li {
+    margin: 0;
+    padding: 10px 20px;
+}
 
-  .drag-container {
+nav ul li a {
+    color: white;
+    text-decoration:none;
+    transition: all 0.2s ease;
+}
+
+nav ul li.active, nav ul li:hover {
+    background: #666;
+}
+
+aside {
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 10px;
+    padding-top: 50px;
+}
+
+.content {
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    cursor: pointer;
+    background: var(--primary);
+    color: white;
+}
+
+input[type="text"] {
+    padding: 5px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+.form-container {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: inline-block;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.form-group input {
+    padding: 5px;
+    width: 200px;
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    font-weight: 500;
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--primary-dark);
+}
+
+#dragItem {
+    width: 100px;
+    height: 100px;
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    margin: 10px;
+    cursor: move;
+    border-radius: 5px;
+    transition: opacity 0.3s;
+}
+
+#dropZone {
+    width: 200px;
+    height: 200px;
+    border: 3px dashed #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    transition: background-color 0.3s;
+}
+
+canvas, svg {
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    display: block;
+}
+
+#locationCanvas {
+    background: #f0f0f0;
+}
+
+#dynamicSvg {
+    background: white;
+}
+
+.drag-container {
     display: flex;
     gap: 20px;
     margin: 20px 0;
@@ -158,11 +191,17 @@ ul {
 
 .draggable {
     padding: 10px;
-    background: #3399ee;
+    background: var(--primary);
     color: white;
     cursor: move;
     margin: 5px;
     border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.draggable:hover {
+    background: var(--primary-dark);
+    transform: translateX(5px);
 }
 
 #drawingCanvas {
@@ -237,7 +276,7 @@ ul {
 }
 
 .dragged-item {
-    background: #3399ee;
+    background: var(--primary);
     color: white;
     padding: 10px;
     margin: 5px;
@@ -254,7 +293,8 @@ ul {
 .section {
     margin-bottom: 30px;
     padding: 20px;
-    background: #f5f5f5;
+    background: white;
+    border: 1px solid var(--border);
     border-radius: 5px;
 }
 
@@ -266,13 +306,13 @@ ul {
 }
 
 .message.error {
-    background: #ffebee;
-    color: #c62828;
+    background: var(--error);
+    color: white;
 }
 
 .message.success {
-    background: #e8f5e9;
-    color: #2e7d32;
+    background: var(--success);
+    color: white;
 }
 
 .form-group {
@@ -318,13 +358,14 @@ input[type="text"],
 input[type="number"] {
     padding: 8px;
     margin: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: 4px;
     width: 150px;
+    font-family: inherit;
 }
 
 button {
-    background: #3399ee;
+    background: var(--primary);
     color: white;
     border: none;
     padding: 8px 15px;
@@ -334,5 +375,360 @@ button {
 }
 
 button:hover {
-    background: #2277cc;
+    background: var(--primary-dark);
+}
+
+.booking-container {
+    max-width: 800px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.booking-item {
+    background: #f5f5f5;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-item button {
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.booking-item button:hover {
+    background: #cc0000;
+}
+
+select {
+    padding: 5px;
+    width: 200px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+select#appointmentType {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.booking-item p {
+    margin: 0;
+    flex: 1;
+    padding-right: 15px;
+}
+
+.header-logo {
+    height: 50px;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.timetable-container {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.subject-list {
+    min-width: 200px;
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.timetable {
+    display: flex;
+    gap: 1px;
+    background: #ddd;
+    padding: 1px;
+    border-radius: 4px;
+    flex-grow: 1;
+}
+
+.time-slots {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+}
+
+.time-header, .day-header {
+    background: var(--primary);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.time-slot {
+    height: 100px;
+    background: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.days {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.drop-zone {
+    height: 100px;
+    background: white;
+    border: 1px dashed #ccc;
+    margin: 0;
+    transition: background-color 0.3s;
+}
+
+.drop-zone.dragover {
+    background: #e3f2fd;
+    border: 1px dashed #2196f3;
+}
+
+.draggable {
+    padding: 8px 12px;
+    margin: 5px 0;
+    background: var(--primary);
+    color: white;
+    border-radius: 4px;
+    cursor: move;
+    transition: all 0.3s;
+}
+
+.draggable:hover {
+    background: var(--primary-dark);
+    transform: translateX(5px);
+}
+
+.scheduled-subject {
+    background: var(--primary);
+    color: white;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    text-align: center;
+    position: relative;
+}
+
+.delete-lesson {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border-radius: 50%;
+    background: var(--error);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-lesson:hover {
+    background: #c53030;
+}
+
+.scheduled-subject {
+    background: var(--primary);
+    color: white;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.progress-dashboard {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.progress-container {
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.status-details {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.status-badge {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.status-badge.active {
+    background: var(--success);
+    color: white;
+}
+
+.status-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.stat-label {
+    color: #666;
+}
+
+.stat-value {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.stat-value.positive {
+    color: #2ecc71;
+}
+
+#creditsArc, #gradeArc {
+    transition: stroke-dashoffset 1s ease-in-out;
+}
+
+.progress-container svg {
+    margin: 0 auto;
+    display: block;
+}
+
+.canvas-section, .svg-section, .drawing-section {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.canvas-controls {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.canvas-controls input[type="range"] {
+    width: 150px;
+}
+
+#drawingCanvas {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#myCanvas, #dynamicSvg {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.chart-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.chart-item h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.grade-input {
+    margin-bottom: 15px;
+}
+
+.grade-input select {
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.grade-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin: 5px 0;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.grade-item button {
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+#gradesList {
+    margin: 15px 0;
+    max-height: 200px;
+    overflow-y: auto;
 }

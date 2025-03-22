@@ -9,6 +9,7 @@
 <body>
 
   <header>
+    
     <h1>Web-programozás-1 Előadás Házi feladat</h1>
   </header>
 
@@ -16,22 +17,74 @@
     <ul>
       <li ><a href="index.html">Főoldal</a></li>
       <li><a href="tabla.html">Diákok</a></li>
-      <li><a href="html5.html">HTML5 API-k</a></li>
-      <li><a href="chart.html">Diagramok</a></li>
-      <li><a href="ajax.html">AJAX</a></li>
-      <li ><a href="oojs.html" class="active">OOJS</a></li>
+      <li><a href="html5.html">Beállitások</a></li>
+      <li><a href="chart.html">Statisztikák</a></li>
+      <li><a href="ajax.html">Administration</a></li>
+      <li ><a href="oojs.html" class="active">OKI időpontfoglalás</a></li>
     </ul>
   </nav>
 
-  <aside>
-    <p>Információk a tanulmányi rendszer használatáról.</p>
-  </aside>
+  
 
   <div class="content">
+
+    <aside>
+      
+
+      <h2 style="text-align: center;">OKI Időpontfoglalás</h2>
+    <h3 style="text-align: center;">Oktatási és Képzési Igazgatóság Időpontfoglalási Rendszer</h3>
+    <p style="text-align: center;">Foglaljon időpontot tanulmányi ügyintézéshez az OKI ügyfélszolgálatára. Válasszon a rendelkezésre álló időpontok közül.</p>
+    </aside>
+
+
     
-    <h2 style="text-align: center;">Üdvözöljük a Tanulmányi Rendszerben!</h2>
-    <p>Itt diákok adatait kezelhetjük, statisztikákat készíthetünk, API-hívásokkal dolgozhatunk, és objektumorientált JavaScript példákat láthatunk.</p>
+    <div class="booking-container">
+      <div class="form-container">
+        <h3>Új időpontfoglalás</h3>
+        <div class="form-group">
+          <label for="studentName">Név:</label>
+          <input type="text" id="studentName" required>
+        </div>
+        <div class="form-group">
+          <label for="neptunCode">Neptun kód:</label>
+          <input type="text" id="neptunCode" required>
+        </div>
+        <div class="form-group">
+          <label for="bookingDate">Dátum:</label>
+          <input type="date" id="bookingDate" required min="2025-03-17" max="2025-04-02">
+        </div>
+        <div class="form-group">
+          <label for="appointmentType">Ügy típusa:</label>
+          <select id="appointmentType" required>
+            <option value="">Válasszon ügytípust...</option>
+            <option value="Beiratkozás">Beiratkozás</option>
+            <option value="Diákigazolvány">Diákigazolvány ügyintézés</option>
+            <option value="Tárgyfelvétel">Tárgyfelvételi kérelem</option>
+            <option value="Ösztöndíj">Ösztöndíj ügyintézés</option>
+            <option value="Egyéb">Egyéb</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="bookingTime">Időpont:</label>
+          <select id="bookingTime">
+            <option value="9:00">9:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+          </select>
+        </div>
+        <button id="submitBooking">Foglalás</button>
+      </div>
+
+      <div class="bookings-list">
+        <h3>Aktív foglalások</h3>
+        <div id="bookingsList"></div>
+      </div>
+    </div>
   </div>
+
+  <script src="oojs.js"></script>
 
   <footer>
     <p style="text-align-last: center;">Rácz Tamás Csaba-Neptun: L2J7OU</p>
