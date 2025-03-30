@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../Main/css/style.css">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <title>React</title>
+</head>
+<body class="react">
+    <header><h1 style="text-align: center;">Quiz alkalmazás</h1></header>
+    
+<nav>
+<ul>
+  <li><a href="../react.html">Főoldal</a></li>
+  <li><a href="feladat1.html" class="active">1.feladat</a></li>
+  <li><a href="../2.feladat/feladat2.html">2.feladat</a></li>
+</ul>
+</nav>
+<div id="output"></div>
+<!-- Load Babel -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- Your custom script here -->
+<script type="text/babel">
+        const questions = [
+            {
+                question: "Melyik eszközt használjuk az internet kapcsolódáshoz?",
+                options: ["Modem", "Router", "LAN kábel", "Meghajtó"],
+                correct: 0
+            },
+            {
+                question: "Mit jelent a HTML rövidítés?",
+                options: ["Hyper Text Markup Language", "High Tech Modern Language", "Hyper Transfer Markup Logic", "Home Tool Markup Language"],
+                correct: 0
+            },
+            {
+                question: "Mi a számítógép agya?",
+                options: ["RAM", "CPU", "GPU", "HDD"],
+                correct: 1
+            },
+            {
+                question: "Melyik a legnagyobb SI mértékegység?",
+                options: ["Gigabyte", "Terabyte", "Petabyte", "Exabyte"],
+                correct: 3
+            },
+            {
+                question: "Melyik nem programozási nyelv?",
+                options: ["Python", "Java", "HTML", "JavaScript"],
+                correct: 2
+            },
+            {
+                question: "Melyik operációs rendszer nyílt forráskódú?",
+                options: ["Windows", "macOS", "Linux", "iOS"],
+                correct: 2
+            }
+        ];
+
+        const Quiz = () => {
+            const [currentQuestion, setCurrentQuestion] = React.useState(0);
+            const [score, setScore] = React.useState(0);
+            const [showScore, setShowScore] = React.useState(false);
+
+            const handleAnswerClick = (selectedOption) => {
+                if (selectedOption === questions[currentQuestion].correct) {
+                    setScore(score + 1);
+                }
+
+                if (currentQuestion + 1 < questions.length) {
+                    setCurrentQuestion(currentQuestion + 1);
+                } else {
+                    setShowScore(true);
+                }
+            };
+
+            const resetQuiz = () => {
+                setCurrentQuestion(0);
+                setScore(0);
+                setShowScore(false);
+            };
+
+            return (
+                <div className="container">
+                    {showScore ? (
+                        <div className="score-section">
+                            <h2>Kvíz befejezve!</h2>
+                            <p>Az eredményed: {score} / {questions.length}</p>
+                            <button onClick={resetQuiz}>Újrakezdés</button>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="quiz-header">
+                                <h2 className="question">{questions[currentQuestion].question}</h2>
+                                <div className="question-count">
+                                    Kérdés {currentQuestion + 1} / {questions.length}
+                                </div>
+                            </div>
+                            <div className="options-container">
+                                {questions[currentQuestion].options.map((option, index) => (
+                                    <button 
+                                        key={index}
+                                        onClick={() => handleAnswerClick(index)}
+                                        className="option-button"
+                                    >
+                                        {option}
+                                    </button>
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        };
+
+        ReactDOM.render(<Quiz />, document.getElementById('output'));
+    </script>
+
+</body>
+</html>
