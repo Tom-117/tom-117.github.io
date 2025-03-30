@@ -1,22 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../Main/css/style.css">
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <title>React</title>
 </head>
-<body>
-    <header><h1 style="text-align: center;">Todo Lista</h1></header>
+<body class="react">
+    <header class="reacthead"><h1 style="text-align: center;">Todo Lista</h1></header>
     <div id="output">
 <nav>
 <ul>
+  <li><a href="../../Main/index.html">Tanulmányi rendszer főoldal</a></li>
   <li><a href="../react.html">Főoldal</a></li>
-  <li><a href="../1.feladat/feladat1.html">1.feladat</a></li>
-  <li><a href="feladat2.html" class="active">2.feladat</a></li>
+  <li><a href="../1.feladat/feladat1.html">Quiz app</a></li>
+  <li><a href="feladat2.html" class="active">Todo lista</a></li>
 </ul>
 </nav>
 </div>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function TodoItem({ todo, onToggle, onDelete }) {
+            return (
+                <div className="todo-item">
+                    <input
+                        type="checkbox"
+                        checked={todo.completed}
+                        onChange={() => onToggle(todo.id)}
+                    />
+                    <span className={todo.completed ? 'completed' : ''}>
+                        {todo.text}
+                    </span>
+                    <button onClick={() => onDelete(todo.id)}>Delete</button>
+                </div>
+            );
+        }
+
+        function TodoInput({ onAdd }) {
+            const [text, setText] = React.useState('');
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                if (text.trim()) {
+                    onAdd(text);
+                    setText('');
+                }
+            };
+
+            return (
+                <form className="todo-input" onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        placeholder="Add a new todo"
+                    />
+                    <button type="submit">Add</button>
+                </form>
+            );
+        }
+
+        function TodoList({ todos, onToggle, onDelete }) {
+            return (
+                <div>
+                    {todos.map(todo => (
+                        <TodoItem
+                            key={todo.id}
+                            todo={todo}
+                            onToggle={onToggle}
+                            onDelete={onDelete}
+                        />
+                    ))}
+                </div>
+            );
+        }
+
+        function TodoApp() {
+            const [todos, setTodos] = React.useState([]);
+
+            const addTodo = (text) => {
+                setTodos([
+                    ...todos,
+                    { id: Date.now(), text, completed: false }
+                ]);
+            };
+
+            const toggleTodo = (id) => {
+                setTodos(todos.map(todo =>
+                    todo.id === id ? { ...todo, completed: !todo.completed } : todo
+                ));
+            };
+
+            const deleteTodo = (id) => {
+                setTodos(todos.filter(todo => todo.id !== id));
+            };
+
+            return (
+                <div className="todo-container">
+                    <TodoInput onAdd={addTodo} />
+                    <TodoList
+                        todos={todos}
+                        onToggle={toggleTodo}
+                        onDelete={deleteTodo}
+                    />
+                </div>
+            );
+        }
+
+        ReactDOM.render(<TodoApp />, document.getElementById('root'));
+    </script>
+    <footer class="footer">
+      <p style="text-align-last: center;">Rácz Tamás Csaba-Neptun: L2J7OU</p>
+    </footer>
 </body>
 </html>

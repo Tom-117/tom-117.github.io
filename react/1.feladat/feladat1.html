@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,20 +10,22 @@
     <title>React</title>
 </head>
 <body class="react">
-    <header><h1 style="text-align: center;">Quiz alkalmazás</h1></header>
+    <header class="reacthead"><h1>Quiz alkalmazás</h1></header>
     
 <nav>
 <ul>
+    <li><a href="../../Main/index.html">Tanulmányi rendszer főoldal</a></li>
   <li><a href="../react.html">Főoldal</a></li>
-  <li><a href="feladat1.html" class="active">1.feladat</a></li>
-  <li><a href="../2.feladat/feladat2.html">2.feladat</a></li>
+  <li><a href="feladat1.html" class="active">Quiz app</a></li>
+  <li><a href="../2.feladat/feladat2.html">Todo lista</a></li>
 </ul>
 </nav>
 <div id="output"></div>
-<!-- Load Babel -->
+
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<!-- Your custom script here -->
+
 <script type="text/babel">
+    <hr/>
         const questions = [
             {
                 question: "Melyik eszközt használjuk az internet kapcsolódáshoz?",
@@ -82,6 +84,7 @@
 
             return (
                 <div className="container">
+                    
                     {showScore ? (
                         <div className="score-section">
                             <h2>Kvíz befejezve!</h2>
@@ -115,6 +118,8 @@
 
         ReactDOM.render(<Quiz />, document.getElementById('output'));
     </script>
-
+<footer class="footer">
+    <p style="text-align-last: center;">Rácz Tamás Csaba-Neptun: L2J7OU</p>
+  </footer>
 </body>
 </html>
