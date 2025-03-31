@@ -1,10 +1,14 @@
-const BASE_URL = 'http://webprogramozas.inf.elte.hu/hallgatok/bozso/TR-IT_program/API';
-const USER_CODE = 'L2J7OUefg456';
+const BASE_URL = 'https://tom-117.github.io/Main/ajax.html';
+const ENCODED_USER_CODE = 'TDJKN09VZWZhNjU3';
+
+function decodeUserCode() {
+    return atob(ENCODED_USER_CODE);
+}
 
 async function makeApiRequest(operation, params = {}) {
     const formData = new FormData();
     formData.append('op', operation);
-    formData.append('code', USER_CODE);
+    formData.append('code', decodeUserCode());
     
     for (const [key, value] of Object.entries(params)) {
         formData.append(key, value);
