@@ -106,25 +106,37 @@ document.addEventListener("DOMContentLoaded", () => {
         chart.destroy();
       }
   
-      const datasets = selectedStudents.map(student => ({
-        label: student.nev,
-        data: [ student.atlag, student.kreditAtlag, student.osszKredit/100],
-        borderColor: getRandomColor(),
-        borderWidth: 1,
-        fill: false
-      }));
-  
       chart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
-          labels: ['Tanulmányi Átlag', 'Kredit Átlag', 'Össz Kredit/100'],
-          datasets: datasets
+          labels: selectedStudents.map(student => student.nev),
+          datasets: [{
+            data: selectedStudents.map(student => student.atlag),
+            backgroundColor: selectedStudents.map(() => getRandomColor()),
+            borderWidth: 1
+          }]
         },
         options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
           scales: {
             y: {
               beginAtZero: true,
-              max: 5
+              max: 5,
+              title: {
+                display: true,
+                text: 'Tanulmányi Átlag'
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Hallgatók'
+              }
             }
           }
         }

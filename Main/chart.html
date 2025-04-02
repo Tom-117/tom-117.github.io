@@ -81,15 +81,64 @@
       </div>
     </div>
 
-    <div class="drawing-section">
-      <h3>Rajzolási Felület</h3>
-      <div class="canvas-controls">
-        <input type="color" id="colorPicker" value="#3399ee">
-        <input type="range" id="brushSize" min="1" max="20" value="5">
-        <button onclick="clearCanvas()">Törlés</button>
-      </div>
-      <canvas id="drawingCanvas" width="600" height="400"></canvas>
+    <div class="data-analysis-section">
+      <h3>Tanulók Féléves Eredményei</h3>
+      <p class="data-description">Hallgatók tanulmányi átlagai féléves bontásban</p>
+      <table id="performanceTable">
+        <tr>
+          <th>Hallgató</th>
+          <th>1. félév</th>
+          <th>2. félév</th>
+          <th>3. félév</th>
+          <th>4. félév</th>
+          <th>5. félév</th>
+        </tr>
+        <tr onclick="showLineChart(this)" class="active">
+          <td>Teszt Elek</td>
+          <td>4.2</td>
+          <td>4.5</td>
+          <td>4.3</td>
+          <td>4.6</td>
+          <td>4.8</td>
+        </tr>
+        <tr onclick="showLineChart(this)">
+          <td>Kiss Anna</td>
+          <td>3.8</td>
+          <td>4.1</td>
+          <td>4.3</td>
+          <td>4.4</td>
+          <td>4.5</td>
+        </tr>
+        <tr onclick="showLineChart(this)">
+          <td>Kovács Péter</td>
+          <td>4.3</td>
+          <td>4.5</td>
+          <td>4.6</td>
+          <td>4.7</td>
+          <td>4.8</td>
+        </tr>
+        <tr onclick="showLineChart(this)">
+          <td>Szabó Éva</td>
+          <td>3.9</td>
+          <td>4.0</td>
+          <td>4.2</td>
+          <td>4.3</td>
+          <td>4.4</td>
+        </tr>
+        <tr onclick="showLineChart(this)">
+          <td>Jó Tamás</td>
+          <td>4.1</td>
+          <td>4.3</td>
+          <td>4.4</td>
+          <td>4.5</td>
+          <td>4.7</td>
+        </tr>
+      </table>
+
+      <div class="chart-label">Kattints egy sorra a hallgató eredményeinek megjelenítéséhez</div>
+      <canvas id="lineChart" width="800" height="400"></canvas>
     </div>
+
   </div>
 
   <footer>

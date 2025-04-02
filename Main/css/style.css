@@ -955,3 +955,52 @@ div.reactmainpage {
     padding: 10px 0;
     text-align: center;
 }
+
+.data-analysis-section {
+    background: white;
+    padding: 30px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.data-analysis-section h3 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#performanceTable {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+#performanceTable tr {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#performanceTable tr:hover {
+    background-color: #f0f7ff;
+}
+
+#performanceTable tr.active {
+    background-color: #e3f2fd;
+}
+
+.chart-label {
+    text-align: center;
+    color: #666;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+#lineChart {
+    margin: 20px auto;
+    display: block;
+    background: white;
+    max-width: 100%;
+    height: auto;
+}
